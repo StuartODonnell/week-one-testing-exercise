@@ -69,18 +69,32 @@ def customer_pet_count (customers)
   customers[:pets].count
 end
 
-def add_pet_to_customer(customers, new_pet)
-  customers[:pets].push(new_pet)
+def add_pet_to_customer(customer, new_pet)
+  customer[:pets].push(new_pet)
 end
 
-def customer_can_afford_pet(customers, new_pet)
+def customer_can_afford_pet(customer, new_pet)
 #here i need to call the customer's cash and cost of pet
 #and compare the two values with >=
-for customer in customers
-  if customers[:cash] >= new_pet[:price]
+  if customer[:cash] >= new_pet[:price]
     return true
   else
     return false
   end
 end
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+  if pet!= nil && customer_can_afford_pet(customer, pet)
+    add_pet_to_customer(customer, pet)
+    increase_pets_sold(pet_shop, 1)
+    add_or_remove_cash(pet_shop, pet[:price])
+  end
 end
+
+
+    #i need to find pet,
+    #then if customer can afford pet if yes then
+    #then I need to
+    #move pet to customer
+    #note that one has been sold
+    #add to total cash
